@@ -13,9 +13,26 @@
 				</span>
 			</li>
 		</ul> -->
-		<div v-for="order in orders">
-		  <p>{{order.title}} <span>¥{{order.price}}</span> <button>X</button></p>
-		</div>
+    <md-card>
+      <md-card-content>
+             <md-list class="order">
+                 <md-list-item class="md-accent" v-for="order in orders" :key="order.id">
+                   <div>
+                      <img v-bind:src="order.img" v-bind:alt="order.title">
+                      <h3>{{order.title}} </h3>
+                      <span>¥{{order.price}}</span> 
+                      <md-button class="md-accent md-raised has-ripple">
+                        <span v-on:click="removeItem(item)">X</span>
+                      </md-button>
+                   </div>
+                 </md-list-item>
+                 <h2>Order Total: ¥<div class="total"> {{total}} </div></h2>
+                 <md-button class="md-accent md-raised has-ripple">
+                   <span v-on:click="">Confirm Order</span>
+                 </md-button>
+             </md-list>
+      </md-card-content>
+    </md-card>
 	</div>
 </template>
 
@@ -49,12 +66,41 @@ export default {
     deleteUser: function (user) {
       this.users.splice(this.users.indexOf(user), 1)
     }
+  },
+  computed: {
+    total: function(){
+      return this.orders.reduce(function(prev, order){
+        return order.price; 
+      },0);
+    }
   }
 }
+
+
 
 </script>
 
 <style scoped>
+
+.order img{
+  width: 110px;
+}
+  
+.order .md-list-item {
+    border-bottom: 2px crimson solid;
+    padding: 20px 0;
+}
+
+.order .md-list-item div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order .md-list-item div h3{
+  min-width: 180px;
+}
 
 
 

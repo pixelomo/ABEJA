@@ -10,8 +10,6 @@
           <label>Search</label>
           <md-input v-model="initialValue"></md-input>
         </md-input-container> -->
-
-
             <md-card md-with-hover class="card" v-for="item in items" :key="item.id">
               <md-card-area md-inset>
                 <md-card-media md-ratio="16:9">
@@ -24,18 +22,10 @@
                     <md-button class="md-primary md-raised has-ripple addToCart">
                       <span v-on:click="addToCart(item)">Select</span>
                     </md-button>
-                    <!-- <form v-on:submit.prevent="addToCart(item)">
-                        <input type="text" v-model="item.title" >
-                        <input type="text" v-model="item.img" value="item.img">
-                        <input type="text" v-model="item.id" value="item.id">
-                        <input type="text" v-model="item.price" value="item.price">
-                        <input type="submit" value="Add to Cart">
-                    </form> -->
                   </div>
                 </md-card-header>
               </md-card-area>
             </md-card>
-
       </md-card-content>
       <md-button class="md-primary md-raised has-ripple checkout">
        <router-link to='/cart'>Proceed To Checkout</router-link>
@@ -61,7 +51,7 @@ export default {
   },
   data () {
     return {
-      title: 'Welcome to the ABEJA Store',
+      title: 'Welcome to the ABEJA Phone Shop',
       showName: true,
       items: [
         {title: 'Google Pixel', img: require('../assets/pixel.png'), id: 1, price: 3000},
@@ -73,26 +63,12 @@ export default {
         {title: 'Huawei P10', img: require('../assets/huawei.png'), id: 7, price: 2700},
         {title: 'Sony Xperia', img: require('../assets/sony.png'), id: 8, price: 3200},
         {title: 'LG G5', img: require('../assets/lg.png'), id: 9, price: 3000}
-      ],
-      newOrder: {
-        title: '',
-        img: '',
-        id: 0,
-        price: 0
-      }
+      ]
     }
   },
   methods: {
     addToCart: function (e) {
-      console.log(e.title);
-      console.log(e.img);
-      console.log(e.id);
-      console.log(e.price);
-        orderRef.push(this.newOrder);
-        this.newOrder.title = '';
-        this.newOrder.img = '';
-        this.newOrder.id = 0;
-        this.newOrder.price = 0;
+        orderRef.push(e);
     },
     search: function (e) {
       console.log(e.target.value)
@@ -154,6 +130,9 @@ h1 img{
 .md-theme-default.md-button:not([disabled]).md-primary.md-raised:hover, .md-theme-default.md-button:not([disabled]).md-primary.md-fab:hover {
     background-color: #404040;
     color: #fff;
+}
+.md-theme-default.md-card{
+  border-radius: 0;
 }
 .yen{
   font-size: 24px;
