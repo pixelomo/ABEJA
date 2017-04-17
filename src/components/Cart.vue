@@ -22,11 +22,11 @@
                       <h3>{{order.title}} </h3>
                       <span>¥{{order.price}}</span> 
                       <md-button class="md-accent md-raised has-ripple">
-                        <span v-on:click="removeItem(item)">X</span>
+                        <span v-on:click="removeItem(order)">X</span>
                       </md-button>
                    </div>
                  </md-list-item>
-                 <h2>Order Total: ¥<div class="total"> {{total}} </div></h2>
+                 <h2>Grand Total: ¥<div class="total"> {{total}} </div></h2>
                  <md-button class="md-accent md-raised has-ripple">
                    <span v-on:click="">Confirm Order</span>
                  </md-button>
@@ -48,24 +48,10 @@ export default {
   firebase: {
     orders: orderRef
   },
-  data () {
-    return {
-      newUser: {},
-      users: []
-    }
-  },
   methods: {
-    addUser: function (e) {
-    	this.users.push({
-    		name: this.newUser.name,
-    		email: this.newUser.email,
-    		registered: true
-    	})
-      e.preventDefault();
-    },
-    deleteUser: function (user) {
-      this.users.splice(this.users.indexOf(user), 1)
-    }
+    removeItem: function (order) {
+       orderRef.child(order['.key']).remove();
+     }
   },
   computed: {
     total: function(){
