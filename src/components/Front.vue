@@ -4,11 +4,11 @@
       <md-card-content>
         <md-input-container v-if="gridView" class="search">
           <label>Search</label>
-         <md-input @keyup.native="search"></md-input>
+         <md-input v-model="search"></md-input>
         </md-input-container>
       </md-card-content>
       <md-card-content v-if="gridView" class="grid">
-            <md-card md-with-hover class="card" v-for="item in items" :key="item.id">
+            <md-card md-with-hover class="card" v-for="item in filteredItems" :key="item.id" >
               <md-card-area md-inset>
                 <md-card-media md-ratio="16:9">
                   <img v-on:click="singleView(item)" v-bind:src="item.img" v-bind:alt="item.title">
@@ -46,10 +46,16 @@
                   <div class="md-subhead">
                     <p class="yen"><span >¥</span>{{single.price}}</p>
                     <md-button class="md-primary md-raised has-ripple addToCart">
-                      <span v-on:click="addToCart(item)">Add to Cart</span>
+                      <span v-on:click="addToCart(single)">Add to Cart</span>
                     </md-button>
                   </div>
                 </md-card-header>
+              </md-card-area>
+              <md-card-area v-if="single.added" class="added">
+                <div>
+                  <h3>Added To Cart</h3>
+                  <img src="../assets/tick.svg" alt="added">
+                </div>
               </md-card-area>
             </md-card>
       </md-card-content>
@@ -89,7 +95,8 @@ export default {
         {title: 'LG G6', img: require('../assets/lg.png'), id: 9, price: 3000, added: false, desc: "Next Generation of Design. Seamless Design with Refined Build. FullVision display with narrow bezel in premium metal and glass body elevates LG G6 into the next generation of smartphone design."}
       ],
       gridView: true,
-      single: {title: '', img: '', id: 0, price: 0, added: false}
+      single: {title: '', img: '', id: 0, price: 0, added: false},
+      search: ''
     }
   },
   methods: {
@@ -97,20 +104,25 @@ export default {
         orderRef.push(e);
         e.added = true;
     },
-    search: function (e) {
-      console.log(e.target.value)
-    },
     singleView: function (e) {
-      console.log(e);
       this.gridView = false;
       this.single.title = e.title;
       this.single.img = e.img;
       this.single.id = e.id;
       this.single.price = e.price;
+      this.single.added = e.added;
       this.single.desc = e.desc;
     },
     grid: function () {
       this.gridView = true;
+    }
+  },
+  computed: {
+    filteredItems: function () {
+      var self = this
+      return self.items.filter(function(item) {
+        return item.title.toLowerCase().indexOf(self.search) !== -1
+      })
     }
   }
 }
