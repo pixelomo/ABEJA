@@ -202,7 +202,7 @@ export default {
   }
 }
 .single img{
-  margin: 50px;
+  margin: 50px 0;
 }
 .single p{
   margin: 0 30px 30px;
