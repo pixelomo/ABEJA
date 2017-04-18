@@ -11,8 +11,12 @@
       							<font><font>4-1-20, Toranomon, Minato-ku, Tokyo</font></font><br>
       							<font><font>105-0001, Japan</font></font><br>
       							<font><font>TEL: + 81-3-6452-8848 / FAX: + 81-3-6452-8849</font></font></p>
-      							<p><a href="https://www.abeja.asia/contact/"><font><font>Contact</font></font></a><br>
-      							<a href="https://www.facebook.com/abejainc/"><font><font>Facebook</font></font></a></p>
+                    <md-button class="md-background md-raised has-ripple">
+                      <a target="_blank" href="https://www.abeja.asia/contact/">Contact</a>
+                    </md-button>
+                    <md-button class="md-background md-raised has-ripple">
+                      <a target="_blank" href="https://www.facebook.com/abejainc/">Facebook</a>
+                    </md-button>
       						</div>
       					</section>
       				</div>
@@ -35,6 +39,12 @@ export default {
 
 .md-card .md-card-header:last-child {
     margin-bottom: 0; 
+}
+
+.md-card .md-card-header footer .footer-widgets .md-button{
+  display: block;
+  margin: 15px auto;
+  width: 110px;
 }
 
 </style>

@@ -48,6 +48,7 @@ export default {
           total.push(val.price) // the value of the current key.
       });
       return total.reduce(function(total, num){ return total + num }, 0);
+
     }
   }
 }
@@ -85,10 +86,29 @@ export default {
 
 .order button a{
   color: #fff;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .md-theme-default.md-button:not([disabled]).md-accent.md-raised{
   background: crimson;
+}
+
+.md-theme-default a:not(.md-button):hover{
+  color: #fff;
+}
+
+.md-theme-default.md-button:not([disabled]).md-accent.md-raised:hover {
+    background-color: #2c3e50;
+}
+
+.order .md-button span{
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 </style>

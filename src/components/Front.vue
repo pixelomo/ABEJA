@@ -17,10 +17,16 @@
                   <div class="md-subhead">
                     <p class="yen"><span >¥</span>{{item.price}}</p>
                     <md-button class="md-primary md-raised has-ripple addToCart">
-                      <span v-on:click="addToCart(item)">Select</span>
+                      <span v-on:click="addToCart(item)">Add to Cart</span>
                     </md-button>
                   </div>
                 </md-card-header>
+              </md-card-area>
+              <md-card-area v-if="item.added" class="added">
+                <div>
+                  <h3>Added To Cart</h3>
+                  <img src="../assets/tick.svg" alt="added">
+                </div>
               </md-card-area>
             </md-card>
       </md-card-content>
@@ -49,21 +55,22 @@ export default {
   data () {
     return {
       items: [
-        {title: 'Google Pixel', img: require('../assets/pixel.png'), id: 1, price: 3000},
-        {title: 'Samsung Galaxy S8', img: require('../assets/s7.png'), id: 2, price: 2500},
-        {title: 'iPhone 7', img: require('../assets/iphone.png'), id: 3, price: 5000},
-        {title: 'Nexus 5X', img: require('../assets/nexus.png'), id: 4, price: 2200},
-        {title: 'Motorola Z', img: require('../assets/motorola.png'), id: 5, price: 1800},
-        {title: 'HTC Ultra', img: require('../assets/htc.png'), id: 6, price: 3500},
-        {title: 'Huawei P10', img: require('../assets/huawei.png'), id: 7, price: 2700},
-        {title: 'Sony Xperia', img: require('../assets/sony.png'), id: 8, price: 3200},
-        {title: 'LG G5', img: require('../assets/lg.png'), id: 9, price: 3000}
+        {title: 'Google Pixel', img: require('../assets/pixel.png'), id: 1, price: 3800, added: false},
+        {title: 'Samsung Galaxy S8', img: require('../assets/s7.png'), id: 2, price: 4200, added: false},
+        {title: 'iPhone 7', img: require('../assets/iphone.png'), id: 3, price: 5000, added: false},
+        {title: 'Nexus 5X', img: require('../assets/nexus.png'), id: 4, price: 2200, added: false},
+        {title: 'Motorola Z', img: require('../assets/motorola.png'), id: 5, price: 1800, added: false},
+        {title: 'HTC Ultra', img: require('../assets/htc.png'), id: 6, price: 3500, added: false},
+        {title: 'Huawei P10', img: require('../assets/huawei.png'), id: 7, price: 2700, added: false},
+        {title: 'Sony Xperia', img: require('../assets/sony.png'), id: 8, price: 3200, added: false},
+        {title: 'LG G5', img: require('../assets/lg.png'), id: 9, price: 3000, added: false}
       ]
     }
   },
   methods: {
     addToCart: function (e) {
         orderRef.push(e);
+        e.added = true;
     },
     search: function (e) {
       console.log(e.target.value)
@@ -111,9 +118,17 @@ export default {
     color: crimson;
     width: 100%;
 }
+.md-theme-default.md-button:not([disabled]).md-primary.md-raised a{
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 .md-theme-default.md-button:not([disabled]).md-primary.md-raised:hover, .md-theme-default.md-button:not([disabled]).md-primary.md-fab:hover {
-    background-color: #404040;
-    color: #fff;
+    background-color: #2c3e50;
+}
+.md-theme-default.md-button:not([disabled]).md-primary.md-raised:hover a{
+  color: #fff;
 }
 .md-theme-default.md-card{
   border-radius: 0;
@@ -130,10 +145,26 @@ export default {
     cursor: pointer;
   }
 }
+.md-card .md-card-area.added{
+  position: absolute;
+  width: 100%;
+  background: rgba(0,0,0,0.5);
+  top: 0;
+  left: 0;
+  line-height: 6;
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  height: 100%;
+}
+.md-card .md-card-area.added img{
+  width: 200px;
+}
 .checkout{
   display: block;
   margin: 20px auto;
-  padding: 20px;
+  padding: 40px;
+  line-height: 6;
 }
 
 </style>
