@@ -75,7 +75,6 @@ import Firebase from 'firebase'
 let db = Firebase.database();
 let orderRef = db.ref('orders');
 
-
 export default {
   name: 'front',
   firebase: {
