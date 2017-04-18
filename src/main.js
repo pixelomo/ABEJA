@@ -18,13 +18,6 @@ Vue.use(VueFire)
 
 Vue.config.productionTip = false
 
-Vue.material.registerTheme('default', {
-  primary: 'crimson',
-  accent: 'indigo',
-  warn: 'red',
-  background: 'grey'
-})
-
 const router = new VueRouter({
   mode: 'history',
   base: __dirname,

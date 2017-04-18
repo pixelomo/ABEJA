@@ -1,18 +1,6 @@
 <template>
 	<div class="cart">
 		<h1>Your Order</h1>
-		<!-- <form v-on:submit="addUser">
-			<input type="text" v-model="newUser.name" placeholder="Enter Name">
-			<input type="text" v-model="newUser.email" placeholder="Enter Email">
-			<input type="submit" value="Register">
-		</form> -->
-		<!-- <ul>
-			<li v-for="user in users">
-				<span :class="{registered: user.registered}">
-					{{user.name}}: {{user.email}} <button v-on:click="deleteUser">X</button>
-				</span>
-			</li>
-		</ul> -->
     <md-card>
       <md-card-content>
              <md-list class="order">
@@ -26,7 +14,7 @@
                       </md-button>
                    </div>
                  </md-list-item>
-                 <h2>Grand Total: ¥<div class="total"> {{total}} </div></h2>
+                 <h2>Grand Total: ¥<span class="total">{{total}}  </span></h2>
                  <md-button class="md-accent md-raised has-ripple">
                    <router-link to='/confirmed'>Confirm Order</router-link>
                  </md-button>
@@ -55,14 +43,14 @@ export default {
   },
   computed: {
     total: function(){
-      return this.orders.reduce(function(prev, order){
-        return order.price; 
-      },0);
+      let total = [];
+      Object.entries(this.orders).forEach(([key, val]) => {
+          total.push(val.price) // the value of the current key.
+      });
+      return total.reduce(function(total, num){ return total + num }, 0);
     }
   }
 }
-
-
 
 </script>
 
@@ -92,10 +80,15 @@ export default {
 
 .order .md-list-item div h3{
   min-width: 180px;
+  color: crimson;
 }
 
 .order button a{
   color: #fff;
+}
+
+.md-theme-default.md-button:not([disabled]).md-accent.md-raised{
+  background: crimson;
 }
 
 </style>
