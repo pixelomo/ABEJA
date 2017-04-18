@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-md-theme="'default'">
     <router-view></router-view>
   </div>
 </template>
@@ -36,8 +36,19 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+.md-card .md-card-header{
+  background: crimson;
+  color: #fff;
+}
+h1 img{
+  width: 150px;
+  margin-right: 30px;
+  padding: 10px;
+}
 
 .nav li a.md-list-item-container{
   justify-content: space-around;
 }
+
+
 </style>

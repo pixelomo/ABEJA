@@ -1,9 +1,6 @@
 <template>
   <div class="hero">
     <md-card>
-      <md-card-header>
-        <h1 class="md-title"><img src="../assets/abeja_logo.png">{{title}}</h1>
-      </md-card-header>
       <md-card-content class="grid">
         <!-- <input type="text" v-on:keyup="search" placeholder="Search"> -->
         <!-- <md-input-container>
@@ -51,8 +48,6 @@ export default {
   },
   data () {
     return {
-      title: 'Welcome to the ABEJA Phone Shop',
-      showName: true,
       items: [
         {title: 'Google Pixel', img: require('../assets/pixel.png'), id: 1, price: 3000},
         {title: 'Samsung Galaxy S8', img: require('../assets/s7.png'), id: 2, price: 2500},
@@ -82,18 +77,13 @@ export default {
 </script>
 
 <style scoped>
-.md-card .md-card-header{
-  background: crimson;
-  color: #fff;
-}
-h1 img{
-  width: 150px;
-  margin-right: 30px;
-  padding: 10px;
-}
+
 .grid{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
 }
 @media (max-width: 850px){
   .grid{
@@ -105,12 +95,6 @@ h1 img{
   .grid{
     display: grid;
     grid-template-columns: 1fr;
-  }
-}
-@media (min-width: 1200px){
-  .grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 .md-card .md-card-header:last-child{

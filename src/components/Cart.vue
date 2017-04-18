@@ -28,7 +28,7 @@
                  </md-list-item>
                  <h2>Grand Total: ¥<div class="total"> {{total}} </div></h2>
                  <md-button class="md-accent md-raised has-ripple">
-                   <span v-on:click="">Confirm Order</span>
+                   <router-link to='/confirmed'>Confirm Order</router-link>
                  </md-button>
              </md-list>
       </md-card-content>
@@ -68,6 +68,12 @@ export default {
 
 <style scoped>
 
+.order{
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .order img{
   width: 110px;
 }
@@ -88,6 +94,8 @@ export default {
   min-width: 180px;
 }
 
-
+.order button a{
+  color: #fff;
+}
 
 </style>
