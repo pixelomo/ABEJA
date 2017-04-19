@@ -1,6 +1,6 @@
 # Abeja
 
-> A simple shopping app built using vue.js and firebase
+> A simple shopping app built using vue.js, material design and firebase
 
 Featuring:
 
