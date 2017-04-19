@@ -12,4 +12,5 @@ Featuring:
 - Checkout page with order summary, grand total and the option to delete items
 - Order confirmation page
 
+demo available here https://abeja-95284.firebaseapp.com/
 
